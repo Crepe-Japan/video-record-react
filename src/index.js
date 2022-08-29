@@ -1,8 +1,8 @@
 import React from 'react';
 import './index.css';
 import App from './App';
-import FFmpegWasmEngine from 'videojs-record/dist/plugins/videojs.record.ffmpeg-wasm.js';
-
+/* import FFmpegWasmEngine from 'videojs-record/dist/plugins/videojs.record.ffmpeg-wasm.js';
+ */
 
 import { createRoot } from 'react-dom/client';
 const container = document.getElementById('root');
