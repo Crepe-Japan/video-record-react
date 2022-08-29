@@ -144,12 +144,25 @@ export default function App({ ...options }) {
 
   return (
     <div data-vjs-player>
-      <video id="myVideo" className="video-js vjs-default-skin" playsInline></video>
+      <div>
+        <video id="myVideo" className="video-js vjs-default-skin" playsInline>
+
+        </video>
+      </div>
       <div className="inputSelector">
         <label>Select video input: </label>
         <select id="selector"></select>
       </div>
-    </div>
+      <div>
+        <video id="myPlayer" className="video-js vjs-default-skin"
+          width="640"
+          height="640"
+          preload={"auto"}
+          autoPlay muted loop >
+          <source src="https://collab-project.github.io/videojs-wavesurfer/demo/media/example.mp4" type="video/mp4" />
+        </video>
+      </div>
+    </div >
 
   );
 
