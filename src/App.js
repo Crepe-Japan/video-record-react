@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React, { Component, useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 
 import './App.css';
 
@@ -54,7 +54,14 @@ export default function App({ ...options }) {
     player.on('finishRecord', () => {
       // recordedData is a blob object containing the recorded data that
       // can be downloaded by the user, stored on server etc.
-      console.log('finished recording: ', this.player.recordedData);
+      /*    player.record().saveAs({ 'video': 'my-video-file-name.webm' }); */
+      console.log('finished recording: ', player.recordedData);
+    });
+
+    player.on('finishConvert', function () {
+      console.log('finished converting: ', player.convertedData);
+      // show save as dialog
+      /*   player.record().saveAs({ 'video': 'my-video-file-name.mp4' }, 'convert');  */
     });
 
     // error handling
