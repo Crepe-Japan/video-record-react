@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React, { Component, useEffect, useState } from 'react';
+import React, { Component } from 'react';
 
 import './App.css';
 
@@ -24,61 +24,57 @@ import Wavesurfer from 'videojs-wavesurfer/dist/videojs.wavesurfer.js';
 import 'videojs-record/dist/css/videojs.record.css';
 import Record from 'videojs-record/dist/videojs.record.js';
 
-export default function App({ ...options }) {
-
-
-  useEffect(() => {
-
-    // Anything in here is fired on component mount.
-    const player = videojs('myVideo', options, function () {
+class App extends Component {
+  componentDidMount() {
+    // instantiate Video.js
+    this.player = videojs(this.videoNode, this.props, () => {
       // print version information at startup
-      const msg = 'Using video.js ' + videojs.VERSION +
-        ' with videojs-record ' + videojs.getPluginVersion('record');
-      videojs.log(msg);
-
-      console.log("videojs-record is ready!");
+      const version_info = 'Using video.js ' + videojs.VERSION +
+        ' with videojs-record ' + videojs.getPluginVersion('record') +
+        ' and recordrtc ' + RecordRTC.version;
+      videojs.log(version_info);
     });
-    /*  setPlayer(vidPlayer) */
 
-
-    player.on('deviceReady', () => {
+    // device is ready
+    this.player.on('deviceReady', () => {
       console.log('device is ready!');
     });
 
     // user clicked the record button and started recording
-    player.on('startRecord', () => {
+    this.player.on('startRecord', () => {
       console.log('started recording!');
     });
 
     // user completed recording and stream is available
-    player.on('finishRecord', () => {
+    this.player.on('finishRecord', () => {
       // recordedData is a blob object containing the recorded data that
       // can be downloaded by the user, stored on server etc.
       console.log('finished recording: ', this.player.recordedData);
     });
 
     // error handling
-    player.on('error', (element, error) => {
+    this.player.on('error', (element, error) => {
       console.warn(error);
     });
 
-    player.on('deviceError', () => {
+    this.player.on('deviceError', () => {
       console.error('device error:', this.player.deviceErrorCode);
     });
+  }
 
-
-    return () => {
-      // Anything in here is fired on component unmount.
-      if (player) {
-        player.dispose();
-      }
+  // destroy player on unmount
+  componentWillUnmount() {
+    if (this.player) {
+      this.player.dispose();
     }
-  }, [])
-
-  return (
-    <div data-vjs-player>
-      <video id="myVideo" className="video-js vjs-default-skin" playsInline></video>
-    </div>
-  );
-
+  }
+  render() {
+    return (
+      <div data-vjs-player>
+        <video id="myVideo" ref={node => this.videoNode = node} className="video-js vjs-default-skin" playsInline></video>
+      </div>
+    );
+  }
 }
+
+export default App;

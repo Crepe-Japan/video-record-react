@@ -1,40 +1,18 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+
+import { createRoot } from 'react-dom/client';
+const container = document.getElementById('root');
+const root = createRoot(container);
 
 const videoJsOptions = {
   controls: true,
   bigPlayButton: false,
-  width: 320,
-  height: 240,
-  fluid: false,
+  width: 240,
+  height: 180,
+  fluid: true,
   plugins: {
-    /*
-    // wavesurfer section is only needed when recording audio-only
-    wavesurfer: {
-        backend: 'WebAudio',
-        waveColor: '#36393b',
-        progressColor: 'black',
-        debug: true,
-        cursorWidth: 1,
-        msDisplayMax: 20,
-        hideScrollbar: true,
-        displayMilliseconds: true,
-        plugins: [
-            // enable microphone plugin
-            WaveSurfer.microphone.create({
-                bufferSize: 4096,
-                numberOfInputChannels: 1,
-                numberOfOutputChannels: 1,
-                constraints: {
-                    video: false,
-                    audio: true
-                }
-            })
-        ]
-    },
-    */
     record: {
       audio: true,
       video: true,
@@ -44,9 +22,6 @@ const videoJsOptions = {
   }
 };
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App {...videoJsOptions} />
-  </React.StrictMode>,
-  document.getElementById('root')
+root.render(
+  <App {...videoJsOptions} />
 );
