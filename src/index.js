@@ -28,15 +28,15 @@ const videoJsOptions = {
       frameHeight: 480,
       maxLength: 10,
       debug: true,
-      // enable ffmpeg.wasm plugin
-      convertEngine: 'ffmpeg.wasm',
-      convertWorkerURL: '../../node_modules/@ffmpeg/core/dist/ffmpeg-core.js',
-      // convert recorded data to MP4 (and copy over audio data without encoding)
-      convertOptions: ['-c:v', 'libx264', '-preset', 'slow', '-crf', '22', '-c:a', 'copy', '-f', 'mp4'],
-      // specify output mime-type
-      pluginLibraryOptions: {
-        outputType: 'video/mp4'
-      }
+      /*     // enable ffmpeg.wasm plugin
+          convertEngine: 'ffmpeg.wasm',
+          convertWorkerURL: '../../node_modules/@ffmpeg/core/dist/ffmpeg-core.js',
+          // convert recorded data to MP4 (and copy over audio data without encoding)
+          convertOptions: ['-c:v', 'libx264', '-preset', 'slow', '-crf', '22', '-c:a', 'copy', '-f', 'mp4'],
+          // specify output mime-type
+          pluginLibraryOptions: {
+            outputType: 'video/mp4'
+          } */
     }
   }
 };
