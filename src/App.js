@@ -217,10 +217,11 @@ export default function App({ ...options }) {
         let playerVideo = document.getElementById('playerVideo')
         playerVideo.play()
       }}>Play</button> */}
-      <div >
-        <video id="playerVideo"
-          width="20"
-          height="20"
+      <div style={{ zIndex: -1, position: 'relative', top: "-10px" }}>
+        <video
+          id="playerVideo"
+          width="10"
+          height="10"
           muted loop playsInline >
           <source src="example.mp4" type="video/mp4" />
         </video>
