@@ -164,10 +164,10 @@ export default function App({ ...options }) {
     e.target.innerText = "Recording .... "
     e.target.disabled = true
     startRecording(canvasStream, recordingTimeMS).then((recordedChunks) => {
-      let recordedBlob = new Blob(recordedChunks, { type: "video/webm" });
+      let recordedBlob = new Blob(recordedChunks, { type: "video/mp4" });
       recording.src = URL.createObjectURL(recordedBlob);
       downloadButton.href = recording.src;
-      downloadButton.download = "RecordedVideo.webm";
+      downloadButton.download = "RecordedVideo.mp4";
       e.target.innerText = "Record"
       e.target.disabled = false
       /* log(`Successfully recorded ${recordedBlob.size} bytes of ${recordedBlob.type} media.`); */
@@ -211,11 +211,11 @@ export default function App({ ...options }) {
         </button>
       </div>
 
-      <div style={{ zIndex: -1, position: 'relative', top: "-200px" }}>
-        <video id="playerVideo" className="video-js vjs-default-skin"
+      <div style={{ zIndex: -1, position: 'relative', top: "-800px" }}>
+        <video id="playerVideo"
           width="20"
           height="20"
-          preload={"auto"}
+
           autoPlay muted loop >
           <source src="example.mp4" type="video/mp4" />
         </video>
