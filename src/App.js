@@ -30,8 +30,8 @@ export default function App({ ...options }) {
   useEffect(() => {
     /*    let preview = document.getElementById("preview");
        const canvas = document.getElementById("c1");; */
-    let devices, deviceId;
-    let inputSection = document.getElementsByClassName('inputSelector')[0];
+    var devices, deviceId;
+    var inputSection = document.getElementsByClassName('inputSelector')[0];
 
 
 
@@ -134,14 +134,13 @@ export default function App({ ...options }) {
       deviceId = event.target.value;
 
       try {
-        var inputSelector = document.getElementById('selector');
 
         // change video input device
         player.record().setVideoInput(deviceId);
 
         console.log("Changed video input to '" + label + "' (deviceId: " +
           deviceId + ")");
-        inputSelector.removeChild()
+
       } catch (error) {
         console.warn(error);
 
@@ -207,11 +206,11 @@ export default function App({ ...options }) {
         let g = frame.data[i * 4 + 1];
         let b = frame.data[i * 4 + 2];
 
-        frame.data[i * 4 + 1] += 10
+        frame.data[i * 4 + 1] += 100
         frame.data[i * 4 + 2] += 20
-        frame.data[i * 4 + 3] = 50;
+        frame.data[i * 4 + 3] += 50;
       }
-      /*       this.ctx1.putImageData(frame, 0, 0); */
+      this.ctx1.putImageData(frame, 0, 0);
       return;
     }
   };
