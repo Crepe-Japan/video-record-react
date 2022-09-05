@@ -211,7 +211,7 @@ export default function App({ ...options }) {
         </button>
       </div>
 
-      <div style={{ zIndex: -1, position: 'relative', top: "-800px" }}>
+      <div >
         <video id="playerVideo"
           width="20"
           height="20"
