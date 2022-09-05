@@ -72,7 +72,7 @@ export default function App({ ...options }) {
     });
 
     // enumerate devices once
-    player.on('deviceReady', function () {
+    player.one('deviceReady', function () {
       /*  processor.doLoad(); */
       player.record().enumerateDevices();
     });
