@@ -9,6 +9,7 @@ import videojs from 'video.js';
 import 'webrtc-adapter';
 import RecordRTC from 'recordrtc';
 import { startRecording } from './canvas-record'
+import { canvasStreamer } from './canvas-stream'
 
 /*
 // Required imports when recording audio-only using the videojs-wavesurfer plugin
@@ -79,7 +80,7 @@ export default function App({ ...options }) {
       player.record().enumerateDevices();
     });
     player.on('deviceReady', function () {
-      processor.doLoad()
+      canvasStreamer.doLoad()
     });
 
     player.on('enumerateReady', function () {
@@ -144,11 +145,6 @@ export default function App({ ...options }) {
     player.on('enumerateError', function () {
       console.warn('enumerate error:', player.enumerateErrorCode);
     });
-
-
-
-
-
     return () => {
       // Anything in here is fired on component unmount.
       if (player) {
@@ -157,54 +153,7 @@ export default function App({ ...options }) {
     }
   }, [])
 
-  let processor = {
-    timerCallback: function () {
-      if (this.video.paused || this.video.ended) {
-        return;
-      }
-      this.computeFrame();
-      let self = this;
-      setTimeout(function () {
-        self.timerCallback();
-      }, 0);
-    },
 
-    doLoad: function () {
-      console.log("Enter Here")
-      this.video = document.querySelector('.preview>video');
-
-      this.c1 = document.getElementById("c1");
-      this.ctx1 = this.c1.getContext("2d");
-      let self = this;
-      /*   this.video.addEventListener("play", function () { */
-      self.width = self.video.videoWidth / 2;
-      self.height = self.video.videoHeight / 2;
-
-      c1.width = self.width
-      c1.height = self.height
-      self.timerCallback();
-      /*  }, false); */
-    },
-
-    computeFrame: function () {
-
-      this.ctx1.drawImage(this.video, 0, 0, this.width, this.height);
-      let frame = this.ctx1.getImageData(0, 0, this.width, this.height);
-      let l = frame.data.length / 4;
-
-      for (let i = 0; i < l; i++) {
-        let r = frame.data[i * 4 + 0];
-        let g = frame.data[i * 4 + 1];
-        let b = frame.data[i * 4 + 2];
-
-        frame.data[i * 4 + 1] += 100
-        frame.data[i * 4 + 2] += 20
-        frame.data[i * 4 + 3] += 50;
-      }
-      this.ctx1.putImageData(frame, 0, 0);
-      return;
-    }
-  };
 
   const canvasRecorder = () => {
     const canvas = document.getElementById("c1");
