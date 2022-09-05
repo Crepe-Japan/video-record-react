@@ -33,20 +33,6 @@ export default function App({ ...options }) {
     var devices, deviceId;
     var inputSection = document.getElementsByClassName('inputSelector')[0];
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     // Anything in here is fired on component mount.
     const player = videojs('preview', options, function () {
       // print version information at startup
@@ -87,7 +73,7 @@ export default function App({ ...options }) {
 
     // enumerate devices once
     player.on('deviceReady', function () {
-      processor.doLoad();
+      /*  processor.doLoad(); */
       player.record().enumerateDevices();
     });
 
