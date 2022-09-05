@@ -223,7 +223,8 @@ export default function App({ ...options }) {
           width="10"
           height="10"
           muted loop playsInline >
-          <source src="example.mp4" type="video/mp4" />
+          <source src="dancer.webm" type="video/webm" />
+          <source src="dancer.mp4" type="video/mp4" />
         </video>
       </div>
     </div >

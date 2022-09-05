@@ -50,7 +50,7 @@ export const canvasStreamer = {
            }
            this.ctx1.putImageData(frame, 0, 0); */
 
-        this.ctx1.drawImage(this.playerVideo, 0, 120, this.width, this.height)
+        this.ctx1.drawImage(this.playerVideo, 0, 0, this.width, this.height)
 
         return;
     }
