@@ -123,7 +123,7 @@ export default function App({ ...options }) {
 
         // change video input device
         player.record().setVideoInput(deviceId);
-
+        processor.doLoad();
         console.log("Changed video input to '" + label + "' (deviceId: " +
           deviceId + ")");
 
