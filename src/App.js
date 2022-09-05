@@ -96,6 +96,7 @@ export default function App({ ...options }) {
 
       // handle selection changes
       var inputSelector = document.getElementById('selector');
+
       inputSelector.addEventListener('change', changeVideoInput);
 
       // populate select options
@@ -133,6 +134,8 @@ export default function App({ ...options }) {
       deviceId = event.target.value;
 
       try {
+        var inputSelector = document.getElementById('selector');
+        inputSelector.removeChild()
         // change video input device
         player.record().setVideoInput(deviceId);
 
