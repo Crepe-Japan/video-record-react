@@ -216,8 +216,7 @@ export default function App({ ...options }) {
 
       <div >
         <video id="playerVideo"
-          width="20"
-          height="20"
+
           muted loop >
           <source src="example.mp4" type="video/mp4" />
         </video>
