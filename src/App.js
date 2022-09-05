@@ -155,24 +155,29 @@ export default function App({ ...options }) {
 
 
 
-  const canvasRecorder = () => {
+  const canvasRecorder = (e) => {
+
     const canvas = document.getElementById("c1");
     let recording = document.getElementById("recording");
     let downloadButton = document.getElementById("downloadButton");
     const canvasStream = canvas.captureStream(25);
+    e.target.innerText = "Recording .... "
+    e.target.disabled = true
     startRecording(canvasStream, recordingTimeMS).then((recordedChunks) => {
       let recordedBlob = new Blob(recordedChunks, { type: "video/webm" });
       recording.src = URL.createObjectURL(recordedBlob);
       downloadButton.href = recording.src;
       downloadButton.download = "RecordedVideo.webm";
-
-      log(`Successfully recorded ${recordedBlob.size} bytes of ${recordedBlob.type} media.`);
+      e.target.innerText = "Record"
+      e.target.disabled = false
+      /* log(`Successfully recorded ${recordedBlob.size} bytes of ${recordedBlob.type} media.`); */
     })
       .catch((error) => {
         if (error.name === "NotFoundError") {
           log("Camera or microphone not found. Can't record.");
         } else {
-          log(error);
+          console.log(error)
+          //log(error);
         }
       })
 
@@ -193,26 +198,26 @@ export default function App({ ...options }) {
         <h2>Canvas (From Camera )</h2>
         <canvas id="c1"></canvas>
       </div>
-      <button onClick={() => canvasRecorder()}> Record </button>
+      <button onClick={(e) => canvasRecorder(e)}> Record </button>
       <div >
         <h2>Recording (From Canvas)</h2>
         <video id="recording" controls></video>
         <br />
         <br />
         <button>
-          <a id="downloadButton" class="button">
+          <a id="downloadButton" className="button">
             Download
           </a>
         </button>
       </div>
 
-      <div hidden>
-        <video id="myPlayer" className="video-js vjs-default-skin"
-          width="640"
-          height="640"
+      <div style={{ zIndex: -1, position: 'relative', top: "-200px" }}>
+        <video id="playerVideo" className="video-js vjs-default-skin"
+          width="20"
+          height="20"
           preload={"auto"}
           autoPlay muted loop >
-          <source src="https://collab-project.github.io/videojs-wavesurfer/demo/media/example.mp4" type="video/mp4" />
+          <source src="example.mp4" type="video/mp4" />
         </video>
       </div>
     </div >
