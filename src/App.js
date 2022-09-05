@@ -81,7 +81,7 @@ export default function App({ ...options }) {
     });
     player.on('deviceReady', function () {
       let playerVideo = document.getElementById('playerVideo')
-      /*      playerVideo.play() */
+      playerVideo.play()
 
       canvasStreamer.doLoad()
     });
@@ -216,9 +216,9 @@ export default function App({ ...options }) {
 
       <div >
         <video id="playerVideo"
+          width="200"
+          height="200"
           autoPlay
-          width="20"
-          height="20"
           muted loop playsinline>
           <source src="example.mp4" type="video/mp4" />
         </video>
