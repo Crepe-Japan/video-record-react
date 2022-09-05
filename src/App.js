@@ -213,15 +213,14 @@ export default function App({ ...options }) {
           </a>
         </button>
       </div>
-      <button onClick={() => {
+      {/*  <button onClick={() => {
         let playerVideo = document.getElementById('playerVideo')
         playerVideo.play()
-      }}>Play</button>
+      }}>Play</button> */}
       <div >
         <video id="playerVideo"
           width="20"
           height="20"
-          className="video-js vjs-default-skin"
           muted loop playsInline >
           <source src="example.mp4" type="video/mp4" />
         </video>
