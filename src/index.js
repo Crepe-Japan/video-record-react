@@ -9,14 +9,14 @@ const container = document.getElementById('root');
 const root = createRoot(container);
 
 const videoJsOptions = {
-  controls: true,
+  controls: false,
   bigPlayButton: false,
 
   fluid: true,
   plugins: {
     record: {
       audio: true,
-      /*  video: true, */
+      /*   video: true, */
       video: {
         // video media constraints: set resolution of camera
         width: { min: 640, ideal: 640, max: 1280 },

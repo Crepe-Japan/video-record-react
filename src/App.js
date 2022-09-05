@@ -8,6 +8,7 @@ import videojs from 'video.js';
 
 import 'webrtc-adapter';
 import RecordRTC from 'recordrtc';
+import { startRecording } from './canvas-record'
 
 /*
 // Required imports when recording audio-only using the videojs-wavesurfer plugin
@@ -25,7 +26,7 @@ import 'videojs-record/dist/css/videojs.record.css';
 import Record from 'videojs-record/dist/videojs.record.js';
 
 export default function App({ ...options }) {
-
+  let recordingTimeMS = 5000;
 
   useEffect(() => {
     /*    let preview = document.getElementById("preview");
@@ -205,6 +206,29 @@ export default function App({ ...options }) {
     }
   };
 
+  const canvasRecorder = () => {
+    const canvas = document.getElementById("c1");
+    let recording = document.getElementById("recording");
+    let downloadButton = document.getElementById("downloadButton");
+    const canvasStream = canvas.captureStream(25);
+    startRecording(canvasStream, recordingTimeMS).then((recordedChunks) => {
+      let recordedBlob = new Blob(recordedChunks, { type: "video/webm" });
+      recording.src = URL.createObjectURL(recordedBlob);
+      downloadButton.href = recording.src;
+      downloadButton.download = "RecordedVideo.webm";
+
+      log(`Successfully recorded ${recordedBlob.size} bytes of ${recordedBlob.type} media.`);
+    })
+      .catch((error) => {
+        if (error.name === "NotFoundError") {
+          log("Camera or microphone not found. Can't record.");
+        } else {
+          log(error);
+        }
+      })
+
+
+  }
 
   return (
     <div data-vjs-player>
@@ -217,9 +241,22 @@ export default function App({ ...options }) {
         <select id="selector"></select>
       </div>
       <div >
-        <h2>Canvas</h2>
+        <h2>Canvas (From Camera )</h2>
         <canvas id="c1"></canvas>
       </div>
+      <button onClick={() => canvasRecorder()}> Record </button>
+      <div >
+        <h2>Recording (From Canvas)</h2>
+        <video id="recording" controls></video>
+        <br />
+        <br />
+        <button>
+          <a id="downloadButton" class="button">
+            Download
+          </a>
+        </button>
+      </div>
+
       <div hidden>
         <video id="myPlayer" className="video-js vjs-default-skin"
           width="640"
