@@ -80,6 +80,9 @@ export default function App({ ...options }) {
       player.record().enumerateDevices();
     });
     player.on('deviceReady', function () {
+      let playerVideo = document.getElementById('playerVideo')
+      playerVideo.play()
+
       canvasStreamer.doLoad()
     });
 
@@ -215,8 +218,7 @@ export default function App({ ...options }) {
         <video id="playerVideo"
           width="20"
           height="20"
-
-          autoPlay muted loop >
+          muted loop >
           <source src="example.mp4" type="video/mp4" />
         </video>
       </div>
