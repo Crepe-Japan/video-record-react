@@ -219,10 +219,9 @@ export default function App({ ...options }) {
       }}>Play</button>
       <div >
         <video id="playerVideo"
-          width="200"
-          height="200"
+          width="20"
+          height="20"
           className="video-js vjs-default-skin"
-
           muted loop playsInline >
           <source src="example.mp4" type="video/mp4" />
         </video>
