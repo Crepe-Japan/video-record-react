@@ -48,6 +48,8 @@ export default function App({ ...options }) {
       console.log('started recording!');
     });
 
+
+
     // user completed recording and stream is available
     player.on('finishRecord', () => {
       // recordedData is a blob object containing the recorded data that
@@ -73,8 +75,10 @@ export default function App({ ...options }) {
 
     // enumerate devices once
     player.one('deviceReady', function () {
-      processor.doLoad();
       player.record().enumerateDevices();
+    });
+    player.on('deviceReady', function () {
+      processor.doLoad()
     });
 
     player.on('enumerateReady', function () {
@@ -123,7 +127,7 @@ export default function App({ ...options }) {
 
         // change video input device
         player.record().setVideoInput(deviceId);
-        processor.doLoad();
+
         console.log("Changed video input to '" + label + "' (deviceId: " +
           deviceId + ")");
 
