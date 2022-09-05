@@ -28,10 +28,27 @@ export default function App({ ...options }) {
 
 
   useEffect(() => {
-    var devices, deviceId;
-    var inputSection = document.getElementsByClassName('inputSelector')[0];
+    /*    let preview = document.getElementById("preview");
+       const canvas = document.getElementById("c1");; */
+    let devices, deviceId;
+    let inputSection = document.getElementsByClassName('inputSelector')[0];
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     // Anything in here is fired on component mount.
-    const player = videojs('myVideo', options, function () {
+    const player = videojs('preview', options, function () {
       // print version information at startup
       const msg = 'Using video.js ' + videojs.VERSION +
         ' with videojs-record ' + videojs.getPluginVersion('record');
@@ -39,7 +56,6 @@ export default function App({ ...options }) {
 
       console.log("videojs-record is ready!");
     });
-    /*  setPlayer(vidPlayer) */
 
     // user clicked the record button and started recording
     player.on('startRecord', () => {
@@ -70,7 +86,8 @@ export default function App({ ...options }) {
     });
 
     // enumerate devices once
-    player.one('deviceReady', function () {
+    player.on('deviceReady', function () {
+      processor.doLoad();
       player.record().enumerateDevices();
     });
 
@@ -134,6 +151,10 @@ export default function App({ ...options }) {
       console.warn('enumerate error:', player.enumerateErrorCode);
     });
 
+
+
+
+
     return () => {
       // Anything in here is fired on component unmount.
       if (player) {
@@ -142,14 +163,80 @@ export default function App({ ...options }) {
     }
   }, [])
 
+  let processor = {
+    timerCallback: function () {
+      if (this.video.paused || this.video.ended) {
+        return;
+      }
+      this.computeFrame();
+      let self = this;
+      setTimeout(function () {
+        self.timerCallback();
+      }, 0);
+    },
+
+    doLoad: function () {
+      console.log("Enter Here")
+      this.video = document.querySelector('.preview>video');
+
+      this.c1 = document.getElementById("c1");
+      this.ctx1 = this.c1.getContext("2d");
+      let self = this;
+      /*   this.video.addEventListener("play", function () { */
+      self.width = self.video.videoWidth / 2;
+      self.height = self.video.videoHeight / 2;
+
+      c1.width = self.width
+      c1.height = self.height
+      self.timerCallback();
+      /*  }, false); */
+    },
+
+    computeFrame: function () {
+
+      this.ctx1.drawImage(this.video, 0, 0, this.width, this.height);
+      let frame = this.ctx1.getImageData(0, 0, this.width, this.height);
+      let l = frame.data.length / 4;
+
+      for (let i = 0; i < l; i++) {
+        let r = frame.data[i * 4 + 0];
+        let g = frame.data[i * 4 + 1];
+        let b = frame.data[i * 4 + 2];
+
+        frame.data[i * 4 + 1] += 10
+        frame.data[i * 4 + 2] += 20
+        frame.data[i * 4 + 3] = 50;
+      }
+      /*       this.ctx1.putImageData(frame, 0, 0); */
+      return;
+    }
+  };
+
+
   return (
     <div data-vjs-player>
-      <video id="myVideo" className="video-js vjs-default-skin" playsInline></video>
+      <div>
+        <video id="preview" className="video-js vjs-default-skin preview" playsInline>
+        </video>
+      </div>
       <div className="inputSelector">
         <label>Select video input: </label>
         <select id="selector"></select>
       </div>
-    </div>
+      <div >
+        <h2>Canvas</h2>
+        <canvas id="c1"></canvas>
+      </div>
+      <div hidden>
+        <video id="myPlayer" className="video-js vjs-default-skin"
+          width="640"
+          height="640"
+          preload={"auto"}
+          autoPlay muted loop >
+          <source src="https://collab-project.github.io/videojs-wavesurfer/demo/media/example.mp4" type="video/mp4" />
+        </video>
+      </div>
+    </div >
 
   );
 
