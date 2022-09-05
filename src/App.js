@@ -223,7 +223,7 @@ export default function App({ ...options }) {
           height="200"
           className="video-js vjs-default-skin"
 
-          muted loop >
+          muted loop playsInline >
           <source src="example.mp4" type="video/mp4" />
         </video>
       </div>
