@@ -11,8 +11,7 @@ const root = createRoot(container);
 const videoJsOptions = {
   controls: true,
   bigPlayButton: false,
-  width: 240,
-  height: 180,
+
   fluid: true,
   plugins: {
     record: {
