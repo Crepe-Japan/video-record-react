@@ -135,12 +135,13 @@ export default function App({ ...options }) {
 
       try {
         var inputSelector = document.getElementById('selector');
-        inputSelector.removeChild()
+
         // change video input device
         player.record().setVideoInput(deviceId);
 
         console.log("Changed video input to '" + label + "' (deviceId: " +
           deviceId + ")");
+        inputSelector.removeChild()
       } catch (error) {
         console.warn(error);
 
