@@ -3,7 +3,7 @@ import './index.css';
 import App from './App';
 /* import FFmpegWasmEngine from 'videojs-record/dist/plugins/videojs.record.ffmpeg-wasm.js';
  */
-
+import { ChakraProvider } from '@chakra-ui/react'
 import { createRoot } from 'react-dom/client';
 const container = document.getElementById('root');
 const root = createRoot(container);
@@ -11,8 +11,9 @@ const root = createRoot(container);
 const videoJsOptions = {
   controls: false,
   bigPlayButton: false,
-
-  fluid: true,
+  width: 5,
+  height: 5,
+  fluid: false,
   plugins: {
     record: {
       audio: true,
@@ -41,5 +42,8 @@ const videoJsOptions = {
 };
 
 root.render(
-  <App {...videoJsOptions} />
+  <ChakraProvider>
+    <App {...videoJsOptions} />
+  </ChakraProvider>
+
 );

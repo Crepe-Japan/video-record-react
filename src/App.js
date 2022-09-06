@@ -10,7 +10,7 @@ import 'webrtc-adapter';
 import RecordRTC from 'recordrtc';
 import { startRecording } from './canvas-record'
 import { canvasStreamer } from './canvas-stream'
-
+import { Center, Square, Circle, Box, Button, Heading, HStack, VStack, Divider } from '@chakra-ui/react'
 /*
 // Required imports when recording audio-only using the videojs-wavesurfer plugin
 import WaveSurfer from 'wavesurfer.js';
@@ -188,48 +188,53 @@ export default function App({ ...options }) {
   }
 
   return (
-    <div data-vjs-player>
-      <div>
-        <video id="preview" className="video-js vjs-default-skin preview" playsInline>
-        </video>
-      </div>
-      <div className="inputSelector">
-        <label>Select video input: </label>
-        <select id="selector"></select>
-      </div>
-      <div >
-        <h2>Canvas (From Camera )</h2>
-        <canvas id="c1"></canvas>
-      </div>
-      <button onClick={(e) => canvasRecorder(e)}> Record </button>
-      <div >
-        <h2>Recording (From Canvas)</h2>
-        <video id="recording" controls ></video>
-        <br />
-        <br />
-        <button>
-          <a id="downloadButton" className="button">
-            Download
-          </a>
-        </button>
-      </div>
-      {/*  <button onClick={() => {
-        let playerVideo = document.getElementById('playerVideo')
-        playerVideo.play()
-      }}>Play</button> */}
-      <div style={{ zIndex: -1, position: 'relative', top: "-10px" }}>
-        <video
-          id="playerVideo"
-          width="10"
-          height="10"
-          muted loop playsInline >
-          {/*      <source src="dancer.webm" type="video/webm" /> */}
-          {/*     <source src="sample_tolucky.mp4" type="video/mp4" /> */}
-          <source src="sample_tolucky.mov" type="video/quicktime" />
-          <source src="sample_keyta.webm" type="video/webm" />
-        </video>
-      </div>
-    </div >
+    <Box >
+      <VStack spacing={3} w="full" alignItems="center">
+        <Box p='2' style={{ zIndex: -1, position: 'relative', top: "-10px" }}>
+          <video
+            id="playerVideo"
+            width="10"
+            height="10"
+            muted loop playsInline >
+            {/*      <source src="dancer.webm" type="video/webm" /> */}
+            {/*     <source src="sample_tolucky.mp4" type="video/mp4" /> */}
+            <source src="sample_tolucky.mov" type="video/quicktime" />
+            <source src="dancer.webm" type="video/webm" />
+          </video>
+        </Box>
+        <Box py='8'>
+          <video id="preview" className="video-js vjs-default-skin preview" playsInline>
+          </video>
+        </Box>
+        <Box className="inputSelector">
+          <Heading as='h3' size='sm'>Select video input: </Heading>
+          <select id="selector"></select>
+        </Box>
+      </VStack>
+      <VStack p='4' spacing={3} w="full" alignItems="center">
+        <Heading> Gamba Osaka Video</Heading>
+        <Box >
+          <VStack>
+            <canvas id="c1"></canvas>
+            <HStack>
+              <Button color='red' onClick={(e) => canvasRecorder(e)}> Record </Button>
+              <Button>
+                <a id="downloadButton" className="button">
+                  Download
+                </a>
+              </Button>
+            </HStack>
+          </VStack>
+        </Box>
+      </VStack>
+      <Divider p='4' />
+      <VStack p='4' spacing={3} w="full" alignItems="center">
+        <Heading>Preview</Heading>
+        <Box >
+          <video id="recording" controls ></video>
+        </Box>
+      </VStack>
+    </Box >
 
   );
 
