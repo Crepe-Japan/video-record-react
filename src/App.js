@@ -235,7 +235,7 @@ export default function App({ ...options }) {
       <VStack p='4' spacing={3} w="full" alignItems="center">
         <Heading>Preview</Heading>
         <Box >
-          <video id="recording" controls className=' vjs-default-skin'></video>
+          <video id="recording" controls className='vjs-default-skin' playsInline></video>
         </Box>
       </VStack>
     </Box >
