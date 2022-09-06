@@ -204,7 +204,7 @@ export default function App({ ...options }) {
       <button onClick={(e) => canvasRecorder(e)}> Record </button>
       <div >
         <h2>Recording (From Canvas)</h2>
-        <video id="recording" controls></video>
+        <video id="recording" controls ></video>
         <br />
         <br />
         <button>
@@ -226,7 +226,7 @@ export default function App({ ...options }) {
           {/*      <source src="dancer.webm" type="video/webm" /> */}
           {/*     <source src="sample_tolucky.mp4" type="video/mp4" /> */}
           <source src="sample_tolucky.mov" type="video/quicktime" />
-          {/*          <source src="sample_tolucky.webm" type="video/webm" /> */}
+          <source src="sample_keyta.webm" type="video/webm" />
         </video>
       </div>
     </div >
