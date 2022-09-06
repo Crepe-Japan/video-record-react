@@ -34,7 +34,9 @@ export default function App({ ...options }) {
        const canvas = document.getElementById("c1");; */
     var devices, deviceId;
     var inputSection = document.getElementsByClassName('inputSelector')[0];
+    let recordButton = document.getElementById("recordButton");
 
+    recordButton.disabled = true
     // Anything in here is fired on component mount.
     const player = videojs('preview', options, function () {
       // print version information at startup
@@ -78,6 +80,8 @@ export default function App({ ...options }) {
     // enumerate devices once
     player.one('deviceReady', function () {
       player.record().enumerateDevices();
+
+      recordButton.disabled = false
     });
     player.on('deviceReady', function () {
       let playerVideo = document.getElementById('playerVideo')
@@ -222,8 +226,8 @@ export default function App({ ...options }) {
           <VStack>
             <canvas id="c1"></canvas>
             <HStack>
-              <Button color='red' onClick={(e) => canvasRecorder(e)}> Record </Button>
-              <Button id='downloadButton'>
+              <Button id='recordButton' color='red' onClick={(e) => canvasRecorder(e)}> Record </Button>
+              <Button disabled id='downloadButton'>
                 <a id="downloadAnchor" className="button">
                   Download
                 </a>
@@ -236,7 +240,7 @@ export default function App({ ...options }) {
       <VStack p='4' spacing={3} w="full" alignItems="center">
         <Heading>Preview</Heading>
         <Box >
-          <video id="recording" controls  ></video>
+          <video id="recording" controls muted playsinline ></video>
         </Box>
       </VStack>
     </Box >
