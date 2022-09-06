@@ -240,7 +240,7 @@ export default function App({ ...options }) {
       <VStack p='4' spacing={3} w="full" alignItems="center">
         <Heading>Preview</Heading>
         <Box >
-          <video id="recording" controls muted playsinline ></video>
+          <video id="recording" className='video-js' controls muted playsinline ></video>
         </Box>
       </VStack>
     </Box >
