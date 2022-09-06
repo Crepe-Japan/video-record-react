@@ -162,17 +162,21 @@ export default function App({ ...options }) {
 
     const canvas = document.getElementById("c1");
     let recording = document.getElementById("recording");
+    let downloadAnchor = document.getElementById("downloadAnchor");
     let downloadButton = document.getElementById("downloadButton");
     const canvasStream = canvas.captureStream(25);
     e.target.innerText = "Recording .... "
     e.target.disabled = true
+    downloadButton.disabled = true
     startRecording(canvasStream, recordingTimeMS).then((recordedChunks) => {
       let recordedBlob = new Blob(recordedChunks, { type: "video/mp4" });
       recording.src = URL.createObjectURL(recordedBlob);
-      downloadButton.href = recording.src;
-      downloadButton.download = "RecordedVideo.mp4";
+      downloadAnchor.href = recording.src;
+      downloadAnchor.download = "RecordedVideo.mp4";
+      downloadButton.disabled = false
       e.target.innerText = "Record"
       e.target.disabled = false
+
       /* log(`Successfully recorded ${recordedBlob.size} bytes of ${recordedBlob.type} media.`); */
     })
       .catch((error) => {
@@ -218,8 +222,8 @@ export default function App({ ...options }) {
             <canvas id="c1"></canvas>
             <HStack>
               <Button color='red' onClick={(e) => canvasRecorder(e)}> Record </Button>
-              <Button>
-                <a id="downloadButton" className="button">
+              <Button id='downloadButton'>
+                <a id="downloadAnchor" className="button">
                   Download
                 </a>
               </Button>
@@ -231,7 +235,7 @@ export default function App({ ...options }) {
       <VStack p='4' spacing={3} w="full" alignItems="center">
         <Heading>Preview</Heading>
         <Box >
-          <video id="recording" controls ></video>
+          <video id="recording" controls className=' vjs-default-skin'></video>
         </Box>
       </VStack>
     </Box >
