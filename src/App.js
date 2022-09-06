@@ -208,7 +208,7 @@ export default function App({ ...options }) {
             {/*      <source src="dancer.webm" type="video/webm" /> */}
             {/*     <source src="sample_tolucky.mp4" type="video/mp4" /> */}
             <source src="sample_tolucky.mov" type="video/quicktime" />
-            <source src="dancer.webm" type="video/webm" />
+            <source src="Sample_dayo.webm" type="video/webm" />
           </video>
         </Box>
         <Box py='8'>
