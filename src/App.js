@@ -223,8 +223,10 @@ export default function App({ ...options }) {
           width="10"
           height="10"
           muted loop playsInline >
-          <source src="dancer.webm" type="video/webm" />
-          <source src="dancer.mp4" type="video/mp4" />
+          {/*      <source src="dancer.webm" type="video/webm" /> */}
+          {/*     <source src="sample_tolucky.mp4" type="video/mp4" /> */}
+          <source src="sample_tolucky.mov" type="video/quicktime" />
+          {/*          <source src="sample_tolucky.webm" type="video/webm" /> */}
         </video>
       </div>
     </div >
