@@ -171,6 +171,7 @@ export default function App({ ...options }) {
     startRecording(canvasStream, recordingTimeMS).then((recordedChunks) => {
       let recordedBlob = new Blob(recordedChunks, { type: "video/mp4" });
       recording.src = URL.createObjectURL(recordedBlob);
+
       downloadAnchor.href = recording.src;
       downloadAnchor.download = "RecordedVideo.mp4";
       downloadButton.disabled = false
@@ -235,7 +236,7 @@ export default function App({ ...options }) {
       <VStack p='4' spacing={3} w="full" alignItems="center">
         <Heading>Preview</Heading>
         <Box >
-          <video id="recording" controls className='vjs-default-skin' playsInline></video>
+          <video id="recording" controls  ></video>
         </Box>
       </VStack>
     </Box >
