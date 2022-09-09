@@ -41,7 +41,7 @@ export const canvasStreamer = {
 
 
         this.ctx1.drawImage(this.cameraVideo, 0, 0, this.width, this.height);
-        this.ctx1.drawImage(this.playerVideo, 0, 0, this.playerVideo.videoWidth, this.playerVideo.videoHeight)
+        this.ctx1.drawImage(this.playerVideo, 0, 0, this.width, this.height)
         /*         let frame = this.ctx1.getImageData(0, 0, this.width, this.height);
                 let l = frame.data.length / 4;
         
