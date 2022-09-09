@@ -16,8 +16,8 @@ export const canvasStreamer = {
         this.ctx1 = this.c1.getContext("2d");
         let self = this;
         /*   this.video.addEventListener("play", function () { */
-        self.width = self.cameraVideo.videoWidth;
-        self.height = self.cameraVideo.videoHeight;
+        self.width = self.cameraVideo.videoWidth / 2;
+        self.height = self.cameraVideo.videoHeight / 2;
 
         this.c1.width = self.width
         this.c1.height = self.height
