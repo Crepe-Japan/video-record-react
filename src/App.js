@@ -214,7 +214,7 @@ export default function App({ ...options }) {
           </video>
         </Box>
         <Box id='cameraVideo' py='8'>
-          <video id="preview" className="video-js vjs-default-skin preview" playsInline>
+          <video id="preview" className="video-js vjs-default-skin cameraView" playsInline>
           </video>
         </Box>
         <Box className="inputSelector">

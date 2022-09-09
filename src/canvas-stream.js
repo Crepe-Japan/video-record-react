@@ -1,7 +1,7 @@
 export const canvasStreamer = {
 
     doLoad: function () {
-        this.cameraVideo = document.querySelector('.preview>video');
+        this.cameraVideo = document.querySelector('.cameraView>video');
         this.playerVideo = document.getElementById('playerVideo')
 
         /*   let playVideo = document.createElement('video');
@@ -16,11 +16,12 @@ export const canvasStreamer = {
         this.ctx1 = this.c1.getContext("2d");
         let self = this;
         /*   this.video.addEventListener("play", function () { */
-        self.width = self.cameraVideo.videoWidth / 1.8;
-        self.height = self.cameraVideo.videoHeight / 1.8;
+        self.width = self.cameraVideo.videoWidth;
+        self.height = self.cameraVideo.videoHeight;
 
         this.c1.width = self.width
         this.c1.height = self.height
+        console.log(self.width, self.height)
         self.timerCallback();
         /*  }, false); */
     },
@@ -38,8 +39,9 @@ export const canvasStreamer = {
 
     computeFrame: function () {
 
+
         this.ctx1.drawImage(this.cameraVideo, 0, 0, this.width, this.height);
-        this.ctx1.drawImage(this.playerVideo, 0, 0, this.width, this.height)
+        this.ctx1.drawImage(this.playerVideo, 0, 0, this.playerVideo.videoWidth, this.playerVideo.videoHeight)
         /*         let frame = this.ctx1.getImageData(0, 0, this.width, this.height);
                 let l = frame.data.length / 4;
         
