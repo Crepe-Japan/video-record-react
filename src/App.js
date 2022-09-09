@@ -217,16 +217,17 @@ export default function App({ ...options }) {
           <video id="preview" className="video-js vjs-default-skin cameraView" playsInline>
           </video>
         </Box>
-        <Box className="inputSelector">
-          <Heading as='h3' size='sm'>Select video input: </Heading>
-          <select id="selector"></select>
-        </Box>
+
       </VStack>
       <VStack p='4' spacing={3} w="full" alignItems="center">
         {/*         <Heading> Gamba Osaka Video</Heading> */}
         <Box >
           <VStack>
             <canvas id="c1"></canvas>
+            <Box className="inputSelector">
+              <Heading as='h3' size='sm'>Select video input: </Heading>
+              <select id="selector"></select>
+            </Box>
             <HStack>
               <Button id='recordButton' color='red' onClick={(e) => canvasRecorder(e)}> Record </Button>
               <Button disabled id='downloadButton'>
