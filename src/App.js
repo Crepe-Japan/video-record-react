@@ -80,8 +80,9 @@ export default function App({ ...options }) {
     // enumerate devices once
     player.one('deviceReady', function () {
       player.record().enumerateDevices();
-      /*  let cameraVideoBox = document.getElementById("cameraVideo");
-       cameraVideoBox.hidden = true */
+      let cameraVideoBox = document.getElementById("cameraVideo");
+      /*      cameraVideoBox.hidden = true  */
+      cameraVideoBox.style.padding = 0
       recordButton.disabled = false
     });
     player.on('deviceReady', function () {
