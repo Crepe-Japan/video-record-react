@@ -20,12 +20,12 @@ const videoJsOptions = {
       /*   video: true, */
       video: {
         // video media constraints: set resolution of camera
-        width: { min: 640, ideal: 640, max: 1280 },
-        height: { min: 480, ideal: 480, max: 920 }
+        width: { min: 1280, ideal: 640, max: 1920 },
+        height: { min: 920, ideal: 480, max: 1080 }
       },
       // dimensions of captured video frames
-      frameWidth: 640,
-      frameHeight: 480,
+      frameWidth: 1920,
+      frameHeight: 1080,
       maxLength: 10,
       debug: true,
       /*     // enable ffmpeg.wasm plugin
