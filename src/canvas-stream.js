@@ -25,7 +25,7 @@ export const canvasStreamer = {
         this.playerVideoCalcWidth = this.playerVideo.videoWidth * this.height / this.playerVideo.videoHeight
 
         this.playerVideoCalcHeight = this.playerVideo.videoHeight * this.width / this.playerVideo.videoWidth
-
+        this.midCalcHeight = this.height / 2 - this.playerVideoCalcHeight / 2
         console.log(self.width, self.height)
         console.log(this.playerVideo.videoWidth, this.playerVideo.videoHeight)
         console.log(this.playerVideoCalcHeight)
@@ -49,7 +49,7 @@ export const canvasStreamer = {
 
         this.ctx1.drawImage(this.cameraVideo, 0, 0, this.width, this.height);
 
-        this.ctx1.drawImage(this.playerVideo, 0, this.height / 2 - this.playerVideoCalcHeight / 2, this.width, this.playerVideoCalcHeight)
+        this.ctx1.drawImage(this.playerVideo, 0, this.midCalcHeight, this.width, this.playerVideoCalcHeight)
         /*         let frame = this.ctx1.getImageData(0, 0, this.width, this.height);
                 let l = frame.data.length / 4;
         
