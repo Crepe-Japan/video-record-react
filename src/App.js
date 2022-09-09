@@ -201,7 +201,7 @@ export default function App({ ...options }) {
   return (
     <Box >
       <VStack spacing={3} w="full" alignItems="center">
-        <Box p='2' style={{ zIndex: -1, position: 'relative', top: "-10px" }}>
+        <Box style={{ zIndex: -1, position: 'relative', top: "-10px" }}>
           <video
             id="playerVideo"
             width="10"
