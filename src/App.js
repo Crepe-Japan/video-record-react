@@ -80,7 +80,8 @@ export default function App({ ...options }) {
     // enumerate devices once
     player.one('deviceReady', function () {
       player.record().enumerateDevices();
-
+      let cameraVideoBox = document.getElementById("cameraVideo");
+      cameraVideoBox.hidden = true
       recordButton.disabled = false
     });
     player.on('deviceReady', function () {
@@ -211,7 +212,7 @@ export default function App({ ...options }) {
             <source src="sample_2.webm" type="video/webm" />
           </video>
         </Box>
-        <Box py='8'>
+        <Box id='cameraVideo' py='8'>
           <video id="preview" className="video-js vjs-default-skin preview" playsInline>
           </video>
         </Box>
