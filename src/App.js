@@ -201,25 +201,25 @@ export default function App({ ...options }) {
   return (
     <Box >
       <VStack spacing={3} w="full" alignItems="center">
-        <Box style={{ zIndex: -1, position: 'relative', top: "-10px" }}>
-          <video
-            id="playerVideo"
-            width="10"
-            height="10"
-            muted loop playsInline >
-            {/*      <source src="dancer.webm" type="video/webm" /> */}
-            {/*     <source src="sample_tolucky.mp4" type="video/mp4" /> */}
-            <source src="sample.mov" type="video/quicktime" />
-            <source src="sample_2.webm" type="video/webm" />
-          </video>
-        </Box>
-        <Box id='cameraVideo' py='8'>
+
+        <Box id='cameraVideo' py='20'>
+          <Box style={{ zIndex: -1, position: 'relative', top: "-10px" }}>
+            <video
+              id="playerVideo"
+              width="5"
+              height="5"
+              muted loop playsInline >
+              {/*      <source src="dancer.webm" type="video/webm" /> */}
+              {/*     <source src="sample_tolucky.mp4" type="video/mp4" /> */}
+              <source src="sample.mov" type="video/quicktime" />
+              <source src="sample_2.webm" type="video/webm" />
+            </video>
+          </Box>
           <video id="preview" className="video-js vjs-default-skin cameraView" playsInline>
           </video>
         </Box>
-
       </VStack>
-      <VStack p='4' spacing={3} w="full" alignItems="center">
+      <VStack spacing={3} w="full" alignItems="center">
         {/*         <Heading> Gamba Osaka Video</Heading> */}
         <Box >
           <VStack>
