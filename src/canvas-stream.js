@@ -21,6 +21,7 @@ export const canvasStreamer = {
 
         this.c1.width = self.width
         this.c1.height = self.height
+
         console.log(self.width, self.height)
         self.timerCallback();
         /*  }, false); */
