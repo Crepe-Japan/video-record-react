@@ -223,7 +223,7 @@ export default function App({ ...options }) {
         </Box>
       </VStack>
       <VStack p='4' spacing={3} w="full" alignItems="center">
-        <Heading> Gamba Osaka Video</Heading>
+        {/*         <Heading> Gamba Osaka Video</Heading> */}
         <Box >
           <VStack>
             <canvas id="c1"></canvas>
