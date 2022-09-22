@@ -17,7 +17,7 @@ const videoJsOptions = {
   plugins: {
     record: {
       audio: true,
-      /*   video: true, */
+      /*  video: true, */
       video: {
         // video media constraints: set resolution of camera
         width: { min: 1280, ideal: 640, max: 1920 },

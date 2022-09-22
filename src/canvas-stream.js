@@ -4,14 +4,6 @@ export const canvasStreamer = {
         this.cameraVideo = document.querySelector('.cameraView>video');
         this.playerVideo = document.getElementById('playerVideo')
 
-        /*   let playVideo = document.createElement('video');
-          playVideo.src = "example.mp4"
-          playVideo.autoplay = true;
-          playVideo.loop = true;
-          playVideo.muted = true;
-          playVideo.preload = "auto"
-          this.playerVideo = playVideo */
-
         this.c1 = document.getElementById("c1");
         this.ctx1 = this.c1.getContext("2d");
         let self = this;

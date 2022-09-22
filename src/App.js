@@ -80,7 +80,7 @@ export default function App({ ...options }) {
     // enumerate devices once
     player.one('deviceReady', function () {
       player.record().enumerateDevices();
-      let cameraVideoBox = document.getElementById("cameraVideo");
+      let cameraVideoBox = document.getElementById("cameraVideoBox");
       /*      cameraVideoBox.hidden = true  */
       cameraVideoBox.style.padding = 0
       recordButton.disabled = false
@@ -170,11 +170,19 @@ export default function App({ ...options }) {
     let recording = document.getElementById("recording");
     let downloadAnchor = document.getElementById("downloadAnchor");
     let downloadButton = document.getElementById("downloadButton");
+
     const canvasStream = canvas.captureStream(25);
     e.target.innerText = "Recording .... "
     e.target.disabled = true
     downloadButton.disabled = true
-    startRecording(canvasStream, recordingTimeMS).then((recordedChunks) => {
+
+    let preview = document.getElementById("preview");
+
+
+    preview.captureStream = preview.captureStream || preview.mozCaptureStream
+
+
+    startRecording(preview.captureStream(), recordingTimeMS).then((recordedChunks) => {
       let recordedBlob = new Blob(recordedChunks, { type: "video/mp4" });
       recording.src = URL.createObjectURL(recordedBlob);
 
@@ -202,7 +210,7 @@ export default function App({ ...options }) {
     <Box >
       <VStack spacing={3} w="full" alignItems="center">
 
-        <Box id='cameraVideo' py='20'>
+        <Box id='cameraVideoBox' py='20'>
           <Box style={{ zIndex: -1, position: 'relative', top: "-10px" }}>
             <video
               id="playerVideo"
@@ -245,6 +253,8 @@ export default function App({ ...options }) {
         <Box >
           <video id="recording" controls></video>
         </Box>
+
+        <video id="testView" width="160" height="120" autoPlay muted></video>
       </VStack>
     </Box >
 
